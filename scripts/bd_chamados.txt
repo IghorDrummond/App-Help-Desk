@@ -1,0 +1,3 @@
+Meu Computador Não Liga ;Hardware;Não está funcionando;Média;1
+A Internet está lenta;Rede;Internet Muito Lenta ;Baixa;1
+Cadastrar um Novo usuario para o sistema;Criação de Usuário;Novo Usuario para o Sistema;Alta;2

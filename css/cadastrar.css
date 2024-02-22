@@ -1,0 +1,10 @@
+section{
+	width: 50%;
+	border-radius: 3px;
+}
+
+@media (max-width: 1199.98px) {
+	section{
+		width: 90%;
+	}
+}
