@@ -5,8 +5,10 @@
 			<div class="row"><!-- Inicio da Linha -->
 
 				<div class="col-6"><!-- Inicio da Primeira Coluna -->
-					<img src="img/logo.png" width="30">
-					<p class="d-inline-block text-white">App Help Desk</p>
+					<a href="home.php">
+						<img src="img/logo.png" width="30">
+						<p class="d-inline-block text-white">App Help Desk</p>
+					</a>
 				</div><!-- Fim da Primeira Coluna -->
 
 				<div class="col-6"><!-- Inicio da Segunda Coluna -->

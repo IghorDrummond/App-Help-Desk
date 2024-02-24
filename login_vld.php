@@ -22,14 +22,13 @@
 			
 			//Verificando Existencia no Banco
 			while (!feof($ChaveBanco)){
-				$Linha = fgets($ChaveBanco);
+				$Linha = explode(';', fgets($ChaveBanco));
 
-				$Informacoes = explode(';', $Linha);
-
-				if($email == $Informacoes[1]){
-					if($senha == $Informacoes[2]){
+				if(strtoupper($email) === strtoupper($Linha[1])){
+					if($senha == $Linha[2]){
 						$_SESSION['logado'] = true;
-						$_SESSION['acesso'] = $Informacoes[0];
+						$_SESSION['acesso'] = $Linha[0];
+						$_SESSION['Permissao'] = trim($Linha[3], PHP_EOL);
 						$_existe = true;
 						break;
 					}

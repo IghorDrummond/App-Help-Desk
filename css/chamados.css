@@ -1,0 +1,19 @@
+			.linha{
+				width: 49%;
+			}
+			textarea{
+				max-height: 330px;
+			}
+			section{
+				width: 50%;
+			}
+			button{
+				font-size: 10px !important;
+				font-weight: bold !important;
+				margin: 0 5px;
+			}
+			@media (max-width: 991.98px) {
+				section{
+					width: 95%;
+				}
+			}

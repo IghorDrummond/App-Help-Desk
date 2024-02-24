@@ -17,10 +17,9 @@
 		<title>Help Desk - Login</title>
 	</head>
 	<body>
-		<header class="bg-dark p-2"><!-- Inicio do Cabeçalho -->
-			<img src="img/logo.png" width="30">
-			<p class="d-inline-block text-white">App Help Desk</p>
-		</header><!-- Fim do Cabeçalho -->
+		<?php
+			require_once('scripts/menu_index.php');
+		?>
 
 		<main class="d-flex align-items-start justify-content-center"><!-- Inicio do Conteúdo -->
 			<section class="border mt-4"><!-- Inicio d a tela de Login -->
