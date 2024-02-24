@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<?php
-	require_once("scripts/validador_acesso.php");
-?>
+<?php require_once("scripts/validador_acesso.php"); ?>
 <html>
 	<head>
 		<?php
@@ -51,12 +49,7 @@
 				</p>
 				<button class="btn btn-success w-25 mt-2" onclick="Fechar()">Ok</button>
 			</div><!-- Fim da Tela de Aviso -->
-			<script type="text/javascript">
-				function Fechar(){
-					var tela = document.getElementById("aviso");
-					tela.style.display = 'none';
-				}
-			</script>			
+			<script type="text/javascript" src="js/home.js"></script>		
 		<?php } ?>	
 
 		<?php

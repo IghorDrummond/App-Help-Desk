@@ -21,11 +21,11 @@
 
 		<main class="d-flex align-items-start justify-content-center"><!-- Inicio do Conteúdo -->
 			<section class="border mt-4 text-left"><!-- Inicio d a tela de Login -->
-				<div class="p-2 border-bottom">ok
+				<div class="p-2 border-bottom">
 					<h5 class="w-25 text-secondary">Cadastro</h5>
 				</div>
 
-				<form action="scripts/cadastaremail.php" method="POST" class="form-group p-3">
+				<form action="scripts/cadastraremail.php" method="POST" class="form-group p-3">
 					<fieldset class="form-group">
 						<legend>Email</legend>
 						<label for="Email">Insira o Email:</label>

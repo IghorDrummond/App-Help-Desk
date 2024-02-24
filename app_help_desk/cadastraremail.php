@@ -10,8 +10,12 @@
 
 			$Cadastro = recuperaId();
 
-			$ChaveBanco = fopen('bd_usuarios.txt', 'a+');
-			$Cadastro = $Cadastro . ';' . $email . ';' . $senha[0] . ';2' . PHP_EOL;
+			if($Cadastro === ''){
+				$Cadastro = '0';
+			}
+
+			$ChaveBanco = fopen('../../app_help_desk/bd_usuarios.txt', 'a+');
+			$Cadastro = $Cadastro . ';' . $email . ';' . $senha[0] . ';' . PHP_EOL;
 
 			fwrite($ChaveBanco, $Cadastro);
 
@@ -28,7 +32,7 @@
 	}
 
 	function existeConta($email){
-		$ChaveBanco = fopen('bd_usuarios.txt', 'r');
+		$ChaveBanco = fopen('../../app_help_desk/bd_usuarios.txt', 'r');
 
 		while(!feof($ChaveBanco)){
 			$Linha = explode(';', fgets($ChaveBanco));
@@ -44,11 +48,12 @@
 	}
 
 	function recuperaId(){
-		$ChaveBanco = fopen('bd_usuarios.txt', 'r+');
+		$Id = '';
+		$ChaveBanco = fopen('../../app_help_desk/bd_usuarios.txt', 'r');
 
 		while(!feof($ChaveBanco)){
 			$Linha = explode(';', fgets($ChaveBanco));
-
+				
 			if(isset($Linha[1])){
 				$Id = strval(intval($Linha[0]) + 1);
 			}else{

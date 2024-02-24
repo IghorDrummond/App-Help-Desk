@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<?php
-	require_once("scripts/validador_acesso.php");
-?>
+<?php require_once("scripts/validador_acesso.php"); ?>
 <html>
 	<head>
 		<?php

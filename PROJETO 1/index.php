@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-<?php
-	require_once("scripts/validador_index.php");
-?>
+<?php require_once("scripts/validador_index.php"); ?>
 <html>
 	<head>
 		<?php

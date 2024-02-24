@@ -18,17 +18,23 @@
 			$_existe = false;
 
 			//Inicia Conexão no Banco de Dados
-			$ChaveBanco = conectaBanco();
+			$ChaveBanco = fopen('../app_help_desk/bd_usuarios.txt', 'r');
 			
 			//Verificando Existencia no Banco
 			while (!feof($ChaveBanco)){
 				$Linha = explode(';', fgets($ChaveBanco));
 
+				if(isset($Linha[1]) === false){
+					continue;
+				}
+
 				if(strtoupper($email) === strtoupper($Linha[1])){
 					if($senha == $Linha[2]){
 						$_SESSION['logado'] = true;
-						$_SESSION['acesso'] = $Linha[0];
-						$_SESSION['Permissao'] = trim($Linha[3], PHP_EOL);
+						$_SESSION['Usuario_Id'] = $Linha[0];
+						$_SESSION['Usuario'] = $Linha[1];
+						//Verifica se é Administrador ou Não
+						trim($Linha[3], PHP_EOL) === '1' ? $_SESSION['Permissao'] = true : $_SESSION['Permissao'] = false;
 						$_existe = true;
 						break;
 					}
@@ -38,11 +44,13 @@
 			//Desliga o Banco de Dados
 			fclose($ChaveBanco);
 
+			print_r($_SESSION);
+
 			//Valida se existe no banco de dados
 			if($_existe === false){
 				naoExiste();
 			}else{
-				header('Location: home.php');
+			 	header('Location: home.php');
 			}
 		}
 
@@ -50,9 +58,5 @@
 		$_SESSION['logado'] = false;
 		header('Location: index.php?login=erro');	
 	}
-
-	function conectaBanco(){
-		$ret = fopen('scripts/bd_usuarios.txt', 'r+');
-		return $ret;
-	}		
+	
 ?>
