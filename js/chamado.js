@@ -1,18 +1,20 @@
 //Declaração de Variaveis Globais
 //Elementos
-var Chamados = OBJtoArray(document.getElementsByClassName('chamado'));
-var Data = OBJtoArray(document.getElementsByTagName('time'));
-var Sessao = OBJtoArray(document.getElementsByTagName('section'));
-var Titulo = OBJtoArray(document.getElementsByTagName('h3'));
-var Modalidades = OBJtoArray(document.getElementsByClassName('Modalidades'));
+var Chamados = document.getElementsByClassName('chamado');
+var Data = document.getElementsByTagName('time');
+var Sessao = document.getElementsByTagName('section');
+var Titulo = document.getElementsByTagName('h3');
+var Modalidades = document.getElementsByClassName('Modalidades');
 //Constante
 const qtd_milissegundos = 86400000;
+//Array
+var Ordem = [];
 //Funções Anonimas
 var Cabecalho = function() {
 	cRet = '<div class="p-2 text-left border-bottom">'
 	cRet += '<h5 class="text-secondary">Chamados</h5></div>'
 	cRet += '<div class="p-2 text-info">'
-	cRet += '<h6 class="d-inline">Filtros:</h6>' 
+	cRet += '<h6 class="d-inline">Filtros:</h6>'
 	cRet += '<button class="btn btn-info" onclick="Filtrar(1)">Data Mais Atual</button>'
 	cRet += '<button class="btn btn-info" onclick="Filtrar(2)">Data Mais Antiga</button>'
 	cRet += '<button class="btn btn-info" onclick="Filtrar(3)">Alfabeto (A-Z)</button>'
@@ -59,8 +61,8 @@ function organiza(){
 
 	cSessao = Cabecalho();//Monta o Cabeçalho da Sessão
 
-	for(nCont = 0; nCont <= Chamados.length -1; nCont++){
-		cSessao += Chamados[nCont].outerHTML;//Reconstroi as Divs, agora desta vez, Ordenadas
+	for(nCont = 0; nCont <= Ordem.length -1; nCont++){
+		cSessao += Ordem[nCont].outerHTML;//Reconstroi as Divs, agora desta vez, Ordenadas
 	}
 
 	cSessao += '<h6 class="text-center">Fim dos Chamados</h6>';
@@ -78,16 +80,20 @@ function dataCrescente(){
 	//Array
 	var Datas_Str = ['', ''];
 
+	//Ele converte o Objeto de Elementos para um Array de Elementos para poder Manipular
+	Ordem = OBJtoArray(Chamados);
+	Datas = OBJtoArray(Data);
+
 	for(nCont = 0; nCont <= (Data.length - 1); nCont++){
-		Datas_Str[0] = Data[nCont].innerText;
+		Datas_Str[0] = Datas[nCont].innerText;
 
 		for(nCont2 = nCont +1; nCont2 <= Data.length -1; nCont2++){
-			Datas_Str[1] = Data[nCont2].innerText;
+			Datas_Str[1] = Datas[nCont2].innerText;
 			
 			if(calcularDias(Datas_Str[0], Datas_Str[1]) > 0){
-				//Troca de lugar as datas para a maior
-				troca(nCont, nCont2, Chamados);
-				troca(nCont, nCont2, Data);
+				//Troca de lugar as datas para Menor
+				Ordem = troca(nCont, nCont2, Ordem);
+				Datas = troca(nCont, nCont2, Datas);
 			}
 		}
 	}
@@ -102,7 +108,11 @@ function dataDecrecente(){
 	var nCont2 = 0;
 	//Array
 	var Datas_Str = ['', ''];
-	
+
+	//Ele converte o Objeto de Elementos para um Array de Elementos para poder Manipular
+	Ordem = OBJtoArray(Chamados);
+	Datas = OBJtoArray(Data);
+
 	for(nCont = 0; nCont <= (Data.length - 1); nCont++){
 		Datas_Str[0] = Data[nCont].innerText;
 
@@ -110,9 +120,9 @@ function dataDecrecente(){
 			Datas_Str[1] = Data[nCont2].innerText;
 			
 			if(calcularDias(Datas_Str[0], Datas_Str[1]) < 0){
-				//Troca de lugar as datas para a maior
-				troca(nCont, nCont2, Chamados);
-				troca(nCont, nCont2, Data);
+				//Troca de lugar as datas para Menor
+				Ordem = troca(nCont, nCont2, Ordem);
+				Datas = troca(nCont, nCont2, Datas);
 			}
 		}
 	}
@@ -125,20 +135,26 @@ function alfabetoCrescente(){
 	//String
 	var Titulo1 = ''
 	var Titulo2 = ''
+	//Array
+	var Titulos_Aux = [];
 	//Numerico
 	var nCont = 0;
 	var nCont2 = 0;
 	var nCont3 = 0;
 
-	for(nCont = 0; nCont <= (Titulo.length -1); nCont++){
-		Titulo1 = Titulo[nCont].innerText;
+	//Ele converte o Objeto de Elementos para um Array de Elementos para poder Manipular
+	Ordem = OBJtoArray(Chamados);
+	Titulos_Aux = OBJtoArray(Titulo);
 
-		for(nCont2 = nCont +1; nCont2 <= (Titulo.length -1); nCont2++){
-			Titulo2 = Titulo[nCont2].innerText;
+	for(nCont = 0; nCont <= (Titulos_Aux.length -1); nCont++){
+		Titulo1 = Titulos_Aux[nCont].innerText;
+
+		for(nCont2 = nCont +1; nCont2 <= (Titulos_Aux.length -1); nCont2++){
+			Titulo2 = Titulos_Aux[nCont2].innerText;
 
 			if(Chr(Titulo1.charAt(0)) > Chr(Titulo2.charAt(0))){
-				troca(nCont, nCont2, Chamados);//Troca de lugar os titulos maiores
-				troca(nCont, nCont2, Titulo);//Troca de lugar os titulos maiores
+				Ordem = troca(nCont, nCont2, Ordem);//Troca de lugar os titulos maiores
+				Titulos_Aux = troca(nCont, nCont2, Titulos_Aux);//Troca de lugar os titulos maiores
 			}else if(Chr(Titulo1.charAt(0)) === Chr(Titulo2.charAt(0))){
 
 			}
@@ -153,20 +169,26 @@ function alfabetoDecrescente(){
 	//String
 	var Titulo1 = ''
 	var Titulo2 = ''
+	//Array
+	var Titulos_Aux = [];
 	//Numerico
 	var nCont = 0;
 	var nCont2 = 0;
 	var nCont3 = 0;
 
-	for(nCont = 0; nCont <= (Titulo.length -1); nCont++){
-		Titulo1 = Titulo[nCont].innerText;
+	//Ele converte o Objeto de Elementos para um Array de Elementos para poder Manipular
+	Ordem = OBJtoArray(Chamados);
+	Titulos_Aux = OBJtoArray(Titulo);
 
-		for(nCont2 = nCont +1; nCont2 <= (Titulo.length -1); nCont2++){
-			Titulo2 = Titulo[nCont2].innerText;
+	for(nCont = 0; nCont <= (Titulos_Aux.length -1); nCont++){
+		Titulo1 = Titulos_Aux[nCont].innerText;
+
+		for(nCont2 = nCont +1; nCont2 <= (Titulos_Aux.length -1); nCont2++){
+			Titulo2 = Titulos_Aux[nCont2].innerText;
 
 			if(Chr(Titulo1.charAt(0)) < Chr(Titulo2.charAt(0))){
-				troca(nCont, nCont2, Chamados);//Troca de lugar os titulos maiores
-				troca(nCont, nCont2, Titulo);//Troca de lugar os titulos maiores
+				Ordem = troca(nCont, nCont2, Ordem);//Troca de lugar os titulos maiores
+				Titulos_Aux = troca(nCont, nCont2, Titulos_Aux);//Troca de lugar os titulos maiores
 			}else if(Chr(Titulo1.charAt(0)) === Chr(Titulo2.charAt(0))){
 
 			}
@@ -176,25 +198,64 @@ function alfabetoDecrescente(){
 /*
 
 */
-function modalidade(){
+function alfabetoDecrescente(){
 	//Declaração de Variaveis
 	//String
 	var Titulo1 = ''
 	var Titulo2 = ''
-	VAR
 	//Array
-	var Modalidades_Aux = []
+	var Titulos_Aux = [];
 	//Numerico
 	var nCont = 0;
 	var nCont2 = 0;
 	var nCont3 = 0;
 
-	for(nCont = 1; nCont <= 3; nCont++){
+	//Ele converte o Objeto de Elementos para um Array de Elementos para poder Manipular
+	Ordem = OBJtoArray(Chamados);
+	Titulos_Aux = OBJtoArray(Titulo);
 
-		for(nCont2 = 0; nCont2 <= Modalidades_Aux.length -1; nCont2++){
+	for(nCont = 0; nCont <= (Titulos_Aux.length -1); nCont++){
+		Titulo1 = Titulos_Aux[nCont].innerText;
 
+		for(nCont2 = nCont +1; nCont2 <= (Titulos_Aux.length -1); nCont2++){
+			Titulo2 = Titulos_Aux[nCont2].innerText;
+
+			if(Chr(Titulo1.charAt(0)) < Chr(Titulo2.charAt(0))){
+				Ordem = troca(nCont, nCont2, Ordem);//Troca de lugar os titulos maiores
+				Titulos_Aux = troca(nCont, nCont2, Titulos_Aux);//Troca de lugar os titulos maiores
+			}else if(Chr(Titulo1.charAt(0)) === Chr(Titulo2.charAt(0))){
+				
+			}
 		}
 	}
+}
+/*
+
+*/
+function modalidade(){
+	//Declaração de Variaveis
+	//Array
+	var Opc = ['ALTA', 'MÉDIA', 'BAIXA'];
+	//Numerico
+	var nCont = 0;
+	var nCont2 = 0;
+	var nCont3 = 0;
+	var Tam = 0;
+
+	Ordem = [];
+
+	for(nCont = 0; nCont <= 2; nCont++){
+		for(nCont2 = 0; nCont2 <= Modalidades.length -1; nCont2++){
+
+			Tam = ((Modalidades[nCont2].innerText).length) - 12;
+
+			if((Modalidades[nCont2].innerText).substr(12, Tam).toUpperCase() === Opc[nCont]){
+				Ordem[nCont3] = Chamados[nCont2];
+				nCont3++;
+			}
+		}
+	}
+	console.log(Ordem);
 }
 /*
 
