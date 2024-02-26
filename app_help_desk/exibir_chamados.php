@@ -14,7 +14,7 @@
 					];
 
 					//Abrir Banco de Dados Txt
-					$Arquivo = fopen('../../app_help_desk/bd_chamados.txt', 'r');	
+					$Arquivo = fopen('../app_help_desk/bd_chamados.txt', 'r');	
 							
 					while(!feof($Arquivo)){
 						$Linha = explode(';', fgets($Arquivo));

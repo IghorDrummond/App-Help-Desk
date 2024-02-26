@@ -44,8 +44,6 @@
 			//Desliga o Banco de Dados
 			fclose($ChaveBanco);
 
-			print_r($_SESSION);
-
 			//Valida se existe no banco de dados
 			if($_existe === false){
 				naoExiste();

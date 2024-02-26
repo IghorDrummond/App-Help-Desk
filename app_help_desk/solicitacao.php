@@ -35,7 +35,7 @@
 
 	//Validação caso a Categoria não for informada
 	if($_POST['Categoria'] === 'Escolha Uma Categoria'){
-		header('Location: ../abrir_chamado.php?Categoria=erro');
+		header('Location: ../../abrir_chamado.php?Categoria=erro');
 	}else{
 		//Tratando Texto
 		//Validando se há ; entre os nomes

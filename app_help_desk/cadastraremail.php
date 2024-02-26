@@ -15,7 +15,7 @@
 			}
 
 			$ChaveBanco = fopen('../../app_help_desk/bd_usuarios.txt', 'a+');
-			$Cadastro = $Cadastro . ';' . $email . ';' . $senha[0] . ';' . PHP_EOL;
+			$Cadastro = $Cadastro . ';' . $email . ';' . $senha[0] . ';' . '2' . PHP_EOL;
 
 			fwrite($ChaveBanco, $Cadastro);
 
@@ -36,6 +36,10 @@
 
 		while(!feof($ChaveBanco)){
 			$Linha = explode(';', fgets($ChaveBanco));
+			
+			if(isset($Linha[1]) === false){
+			    continue;
+			}
 
 			if(strtoupper($Linha[1]) === strtoupper($email)){
 				fclose($ChaveBanco);
