@@ -35,10 +35,11 @@
 
 	//Validação caso a Categoria não for informada
 	if($_POST['Categoria'] === 'Escolha Uma Categoria'){
-		header('Location: ../../abrir_chamado.php?Categoria=erro');
+		header('Location: ../abrir_chamado.php?Categoria=erro');
 	}else{
 		//Tratando Texto
 		//Validando se há ; entre os nomes
+		$_POST['Descricao'] = str_replace(array("\r", "\n", "\r\n"), '', $_POST['Descricao']);
 		for($nCont = 0; $nCont <= (count($Indices) - 1); $nCont++){
 			$_POST[$Indices[$nCont]] = str_replace(';', '-Ponto e Virgula-', $_POST[$Indices[$nCont]]);
 		}

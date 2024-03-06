@@ -31,6 +31,8 @@
 
 						$nPosic = array_search($Linha[4], $Color[0]);//Retorna a Posição da Prioridade do Ticket
 						$usuario = $Linha[6];//Retorna o Usuario que abriu o Ticket
+
+						$Linha[3] = str_replace(chr(155), "\r\n" , $Linha[3]);
 				?>
 					<div class="chamado m-2 border border-bottom border-top border-dark p-2 <?php echo $Color[1][$nPosic];?>">
 						<h3><?php echo($Linha[1]); ?></h3>

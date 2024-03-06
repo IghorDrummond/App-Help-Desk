@@ -1,0 +1,22 @@
+section{
+	width: 50%;
+	border-radius: 3px;
+}
+#sucesso{
+	animation: aparece 1s;
+}
+
+@keyframes aparece{
+	from{
+		opacity: 0;
+	}
+	to{
+		opacity: 1;
+	}
+}
+
+@media (max-width: 1199.98px) {
+	section{
+		width: 90%;
+	}
+}
