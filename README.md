@@ -1,5 +1,6 @@
 # App Help Desk
 
+<img src="public_html/img/logo.png" width="72" height="72"><br>
 Hoje Apresento meu Projeto Pessoal: Help Desk! 🎓💻
 
 Meu projeto pessoal, o Help Desk, é uma iniciativa desenvolvida para demonstrar meu conhecimento em desenvolvimento web e gestão de solicitações de suporte. Este projeto, construído utilizando HTML, CSS, JavaScript, Bootstrap e PHP, não tem como objetivo a venda, mas sim servir como uma ferramenta acadêmica para aprimorar minhas habilidades e compartilhar conhecimento.
